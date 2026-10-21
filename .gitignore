@@ -3,14 +3,12 @@
 __pycache__/
 *.py[cod]
 
-# Local application data
-catalog.db
-library/*
-!library/PUT_IMPORTED_IMAGES_HERE.txt
-backups/*
-!backups/.gitkeep
+# Private local application data
+/catalog.db
+/library/
+/backups/
 
-# Local OS files
+# Local operating-system files
 .DS_Store
 Thumbs.db
 *:Zone.Identifier
