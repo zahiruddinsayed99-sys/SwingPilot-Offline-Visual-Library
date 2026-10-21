@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SwingPilot — Offline Visual Library</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">↗</div><div><b>SwingPilot</b><small>OFFLINE VISUAL LIBRARY</small></div></div>
+    <button class="nav-item active" data-view="all"><span>▦</span> All visuals <em id="allCount">0</em></button>
+    <button class="nav-item" data-view="favorites"><span>☆</span> Favorites <em id="favCount">0</em></button>
+    <div class="side-heading">CATEGORIES <button id="addCategory" title="Add category">＋</button></div>
+    <div id="categoryNav" class="category-nav"></div>
+    <div class="sidebar-bottom">
+      <button class="nav-item" id="manageCategories"><span>⚙</span> Manage categories</button>
+      <button class="nav-item" id="backupBtn"><span>⬇</span> Backup library</button>
+      <div class="offline-note"><span class="status-dot"></span> Local &amp; offline</div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div><div class="eyebrow">YOUR PERSONAL TRADING REFERENCE</div><h1 id="pageTitle">All visuals</h1></div>
+      <div class="top-actions">
+        <button id="themeToggle" class="icon-btn" title="Toggle dark/light theme">☼</button>
+        <button id="importBtn" class="primary-btn">＋ Add images</button>
+        <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      </div>
+    </header>
+    <section class="toolbar">
+      <label class="searchbox"><span>⌕</span><input id="searchInput" placeholder="Search titles, tags, categories..." autocomplete="off"><kbd>Ctrl K</kbd></label>
+      <select id="sortSelect" aria-label="Sort images"><option value="newest">Recently added</option><option value="title">Title A–Z</option><option value="oldest">Oldest first</option></select>
+    </section>
+    <div class="welcome-strip"><div><b>Your playbook, one click away.</b><p>Import your saved strategy images, organize them, and open them instantly while reviewing your trading rules.</p></div><div class="strip-mark">SP<span> / VISUALS</span></div></div>
+    <section class="content-head"><div><h2 id="sectionTitle">Browse library</h2><p id="resultCount">0 visuals</p></div><button id="clearFilters" class="text-btn">Clear filters</button></section>
+    <section id="gallery" class="gallery"></section>
+    <section id="emptyState" class="empty-state" hidden><div class="empty-icon">▧</div><h2 id="emptyTitle">Your visual library is ready</h2><p id="emptyText">Add the images you have collected to begin building your offline playbook.</p><button class="primary-btn" id="emptyImport">＋ Import images</button></section>
+  </main>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+
+<div id="viewer" class="viewer" hidden>
+  <div class="viewer-top"><button id="closeViewer" class="icon-btn">✕</button><div id="viewerCounter"></div><div class="viewer-actions"><button id="prevImage" class="icon-btn" title="Previous">←</button><button id="nextImage" class="icon-btn" title="Next">→</button></div></div>
+  <div class="viewer-body"><button id="viewerPrev" class="viewer-arrow">‹</button><div class="viewer-image-wrap"><img id="viewerImage" alt=""><div id="zoomHint">Click image to zoom</div></div><button id="viewerNext" class="viewer-arrow">›</button>
+    <aside class="details-panel"><label>IMAGE TITLE</label><input id="editTitle"><label>CATEGORY</label><select id="editCategory"></select><label>DESCRIPTION / NOTES</label><textarea id="editDescription" rows="4" placeholder="Add your own notes..."></textarea><label>TAGS <small>comma-separated</small></label><input id="editTags" placeholder="entry, VWAP, momentum"><div class="detail-buttons"><button id="saveDetails" class="primary-btn">Save changes</button><button id="toggleFavorite" class="secondary-btn">☆ Favorite</button></div><button id="deleteImage" class="danger-link">Delete from library</button></aside>
+  </div>
+</div>
+
+<div id="categoryModal" class="modal" hidden><div class="modal-card"><div class="modal-head"><h2>Manage categories</h2><button class="icon-btn close-modal">✕</button></div><p class="muted">Rename categories or remove empty ones. Images must be moved before a category can be deleted.</p><div id="categoryManager"></div><div class="modal-footer"><input id="newCategoryName" placeholder="New category name"><button id="createCategory" class="primary-btn">Add</button></div></div></div>
+<div id="importModal" class="modal" hidden><div class="modal-card"><div class="modal-head"><h2>Import images</h2><button class="icon-btn close-import">✕</button></div><p class="muted">Choose one or more image files. Your original files are not changed; copies are stored inside this library.</p><div id="dropZone" class="drop-zone"><div class="empty-icon">⇧</div><b>Choose image files</b><span>PNG, JPG, WEBP, GIF, BMP</span><button id="chooseFiles" class="secondary-btn">Browse files</button><span id="selectedFiles">No files selected</span></div><label class="field-label">Assign category (optional)</label><select id="importCategory"></select><div class="modal-footer"><span class="muted" id="importStatus"></span><button id="doImport" class="primary-btn" disabled>Import selected</button></div></div></div>
+<script src="/static/app.js"></script>
+</body></html>

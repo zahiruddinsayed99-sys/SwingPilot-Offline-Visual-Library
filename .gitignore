@@ -1,0 +1,16 @@
+# Python environment and cache
+.venv/
+__pycache__/
+*.py[cod]
+
+# Local application data
+catalog.db
+library/*
+!library/PUT_IMPORTED_IMAGES_HERE.txt
+backups/*
+!backups/.gitkeep
+
+# Local OS files
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
